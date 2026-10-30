@@ -6,9 +6,11 @@
 //Don't do that at home
 #define TEST(x) { \
     int status = 0; \
+    report_check('B'); \
     int test = fork(); \
     if (test == 0) { \
         x showLeaks(); \
+        report_check('C'); \
         cout << FG_DEFAULT; \
         exit(EXIT_SUCCESS); \
     } else if (test < 0) { \

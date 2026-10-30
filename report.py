@@ -22,10 +22,10 @@ try:
     if result.returncode:
         sys.exit(2)
     raw = Path(events).read_bytes()
-    if not raw or set(raw) - set(b'PFE'):
+    if not raw or set(raw) - set(b'PF EBC'.replace(b' ', b'')) or not raw.count(b'B') or raw.count(b'C') > raw.count(b'B'):
         sys.exit('Tester did not produce a valid result stream')
     counts = {'passed': raw.count(b'P'), 'failed': raw.count(b'F'),
-              'errors': raw.count(b'E'), 'skipped': 0}
+              'errors': max(raw.count(b'E'), raw.count(b'B') - raw.count(b'C')), 'skipped': 0}
     counts['total'] = sum(counts.values())
     with report.open('x', encoding='utf-8') as output:
         json.dump({'version': 1, **counts}, output)
