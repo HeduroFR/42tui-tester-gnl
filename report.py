@@ -22,7 +22,7 @@ try:
     if result.returncode:
         sys.exit(2)
     raw = Path(events).read_bytes()
-    if not raw or set(raw) - set(b'PF EBC'.replace(b' ', b'')) or not raw.count(b'B') or raw.count(b'C') > raw.count(b'B'):
+    if not raw or set(raw) - set(b'PFEBC') or not raw.count(b'B') or raw.count(b'C') > raw.count(b'B'):
         sys.exit('Tester did not produce a valid result stream')
     counts = {'passed': raw.count(b'P'), 'failed': raw.count(b'F'),
               'errors': max(raw.count(b'E'), raw.count(b'B') - raw.count(b'C')), 'skipped': 0}
