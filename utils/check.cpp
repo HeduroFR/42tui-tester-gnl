@@ -1,10 +1,12 @@
 #include "check.hpp"
+#include "report.hpp"
 #include "leaks.hpp"
 
 extern int iTest;
 
 void check(bool succes)
 {
+    report_check(succes ? 'P' : 'F');
 	if (succes)
 		{std::ostringstream ss; ss << FG_GREEN << iTest << ".OK "; write(1, ss.str().c_str(), ss.str().size());}
 	else

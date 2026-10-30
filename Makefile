@@ -1,6 +1,6 @@
 TIMEOUT_US				= 1000000
 .DEFAULT_GOAL			= a
-UTILS					= utils/sigsegv.cpp utils/color.cpp utils/check.cpp utils/gnl.cpp utils/leaks.cpp
+UTILS					= utils/sigsegv.cpp utils/color.cpp utils/check.cpp utils/gnl.cpp utils/leaks.cpp utils/report.cpp
 TESTS_PATH				= tests/
 SHELL					= bash
 

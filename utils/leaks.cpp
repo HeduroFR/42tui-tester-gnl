@@ -1,5 +1,6 @@
 #include <cstdio>
 #include "leaks.hpp"
+#include "report.hpp"
 
 std::vector<ptr> mallocList;
 
@@ -65,6 +66,7 @@ void showLeaks(void)
 {
 	if (mallocList.size() != 0)
 	{
+        report_check('F');
 		std::ostringstream ss;
 		ss << FG_RED << "LEAKS.KO ";
 		write(1, ss.str().c_str(), ss.str().size());
